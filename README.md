@@ -195,24 +195,27 @@ secret you'd protect server-side.
 **CI/CD:** `.github/workflows/ci.yml` runs lint → typecheck → test → build
 on every push and pull request to `main`.
 
-## Screenshots
-![Dashboard](./screenshots/dashboard.png)
+## 📸 Screenshots
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
 
 ### Markets
 
-![Markets](./screenshots/markets.png)
-
-### Coin Details
-
-![Coin Details](./screenshots/coin-details.png)
+![Markets](screenshots/markets.png)
 
 ### Portfolio
 
-![Portfolio](./screenshots/portfolio.png)
+![Portfolio](screenshots/portfolio.png)
 
 ### Watchlist
 
-![Watchlist](./screenshots/watchlist.png)
+![Watchlist](screenshots/watchlist.png)
+
+### Settings
+
+![Settings](screenshots/settings.png)
 
 
 ## Contributing
