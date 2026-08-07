@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens.
+ * Values are raw HSL components (no hsl() wrapper) so Tailwind can compose
+ * them with opacity modifiers, e.g. bg-primary/10.
+ *
+ * Palette rationale: a slightly blue-tinted near-black (not pure #000) reads
+ * as intentional/"engineered" rather than a default dark mode — the same
+ * trick TradingView and Vercel's dashboard use. Financial figures use
+ * tabular numerals everywhere (see .font-tabular) so price columns and
+ * ticking numbers never visually jitter — that consistency is this app's
+ * one deliberate signature.
+ */
+:root,
+.dark {
+  --bg: 222 16% 7%;
+  --bg-surface: 222 15% 10%;
+  --bg-surface-hover: 222 14% 13%;
+  --bg-elevated: 222 15% 12%;
+  --border: 222 12% 18%;
+  --border-subtle: 222 12% 14%;
+  --text-primary: 210 25% 97%;
+  --text-secondary: 215 14% 68%;
+  --text-muted: 215 11% 46%;
+  --primary: 217 91% 60%;
+  --primary-hover: 217 91% 67%;
+  --primary-muted: 217 55% 18%;
+  --success: 152 58% 46%;
+  --success-muted: 152 40% 16%;
+  --error: 4 78% 60%;
+  --error-muted: 4 50% 18%;
+  --warning: 38 92% 55%;
+  --warning-muted: 38 55% 18%;
+  --shadow-color: 220 45% 2%;
+
+  color-scheme: dark;
+}
+
+.light {
+  --bg: 0 0% 100%;
+  --bg-surface: 220 25% 98%;
+  --bg-surface-hover: 220 20% 95%;
+  --bg-elevated: 0 0% 100%;
+  --border: 220 14% 91%;
+  --border-subtle: 220 14% 94%;
+  --text-primary: 222 25% 11%;
+  --text-secondary: 220 11% 38%;
+  --text-muted: 220 9% 56%;
+  --primary: 217 91% 52%;
+  --primary-hover: 217 91% 45%;
+  --primary-muted: 217 85% 95%;
+  --success: 152 55% 36%;
+  --success-muted: 152 50% 93%;
+  --error: 4 72% 50%;
+  --error-muted: 4 65% 95%;
+  --warning: 38 88% 42%;
+  --warning-muted: 38 75% 93%;
+  --shadow-color: 220 40% 35%;
+
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-sans text-body;
+  }
+
+  /* Visible, consistent focus ring for keyboard navigation. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-bg;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-text-primary;
+  }
+
+  /* Respect reduced-motion preferences globally. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Tabular numerals for all financial figures — prices never jitter. */
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 999px;
+  }
+
+  /* Compact density mode (Settings → Compact Mode). Tightens the most common
+     padding/gap utilities app-wide without threading a density prop through
+     every component. */
+  html.compact .p-5 {
+    padding: 0.75rem;
+  }
+  html.compact .px-5 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  html.compact .py-5 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  html.compact .pb-5 {
+    padding-bottom: 0.75rem;
+  }
+  html.compact .py-4 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  html.compact .py-3 {
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+  }
+  html.compact .gap-6 {
+    gap: 1rem;
+  }
+  html.compact .gap-4 {
+    gap: 0.75rem;
+  }
+
+  .skeleton {
+    @apply animate-shimmer rounded-md bg-[length:200%_100%];
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--bg-elevated)) 25%,
+      hsl(var(--bg-surface-hover)) 50%,
+      hsl(var(--bg-elevated)) 75%
+    );
+  }
+}
