@@ -7,8 +7,7 @@ Query, and Zustand.
 ![CI](https://github.com/ybanji/coin-tracker/actions/workflows/ci.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
-🌐 Live Demo:
-https://your-vercel-link.vercel.app
+
 
 ## Overview
 
