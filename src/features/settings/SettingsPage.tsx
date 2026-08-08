@@ -82,15 +82,16 @@ export function SettingsPage() {
             </div>
           </div>
 
-          <label className="flex items-center justify-between gap-4 sm:max-w-md">
-            <span>
+          <div className="flex items-center justify-between gap-4 sm:max-w-md">
+            <div>
               <span className="block text-caption font-medium text-text-secondary">Compact Mode</span>
               <span className="block text-caption text-text-muted">Tighter spacing to fit more on screen.</span>
-            </span>
+            </div>
             <button
               type="button"
               role="switch"
               aria-checked={compactMode}
+              aria-label="Toggle compact mode"
               onClick={() => setCompactMode(!compactMode)}
               className={cn(
                 "relative h-6 w-11 shrink-0 rounded-full transition-colors duration-200",
@@ -104,7 +105,7 @@ export function SettingsPage() {
                 )}
               />
             </button>
-          </label>
+          </div>
         </CardContent>
       </Card>
 
