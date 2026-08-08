@@ -58,8 +58,8 @@ export const usePreferencesStore = create<PreferencesState>()(
     }),
     {
       name: "coin-tracker-preferences",
-      onRehydrateStorage: () => (state) => {
-        if (state) applyCompactModeToDocument(state.compactMode);
+      onRehydrateStorage: () => (_state) => {
+        if (_state) applyCompactModeToDocument(_state.compactMode);
       },
     },
   ),
