@@ -22,17 +22,17 @@ export const usePortfolioStore = create<PortfolioState>()(
     (set) => ({
       holdings: [],
       addHolding: (input) =>
-        set((state) => ({
+        set((_state) => ({
           holdings: [
-            ...state.holdings,
+            ..._state.holdings,
             { ...input, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
           ],
         })),
       updateHolding: (id, input) =>
-        set((state) => ({
-          holdings: state.holdings.map((h) => (h.id === id ? { ...h, ...input } : h)),
+        set((_state) => ({
+          holdings: _state.holdings.map((h) => (h.id === id ? { ...h, ...input } : h)),
         })),
-      removeHolding: (id) => set((state) => ({ holdings: state.holdings.filter((h) => h.id !== id) })),
+      removeHolding: (id) => set((_state) => ({ holdings: _state.holdings.filter((h) => h.id !== id) })),
       clear: () => set({ holdings: [] }),
     }),
     { name: "coin-tracker-portfolio" },

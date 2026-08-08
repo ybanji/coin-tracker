@@ -21,8 +21,8 @@ export const useRecentSearchesStore = create<RecentSearchState>()(
     (set) => ({
       entries: [],
       addEntry: (entry) =>
-        set((state) => ({
-          entries: [entry, ...state.entries.filter((e) => e.id !== entry.id)].slice(0, MAX_RECENT),
+        set((_state) => ({
+          entries: [entry, ..._state.entries.filter((e) => e.id !== entry.id)].slice(0, MAX_RECENT),
         })),
       clear: () => set({ entries: [] }),
     }),
