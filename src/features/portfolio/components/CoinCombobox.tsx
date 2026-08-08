@@ -40,16 +40,16 @@ export function CoinCombobox({ coins, value, onChange, error, disabled }: CoinCo
 
   return (
     <div className="flex flex-col gap-1.5" ref={containerRef}>
-      <label className="text-caption font-medium text-text-secondary" id="coin-combobox-label">
+      <label htmlFor="coin-combobox-button" className="text-caption font-medium text-text-secondary">
         Coin
       </label>
       <div className="relative">
         <button
+          id="coin-combobox-button"
           type="button"
           disabled={disabled}
           aria-haspopup="listbox"
           aria-expanded={open}
-          aria-labelledby="coin-combobox-label"
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "flex h-10 w-full items-center gap-2 rounded-md border border-border bg-bg-elevated px-3 text-left text-body text-text-primary",
@@ -73,13 +73,11 @@ export function CoinCombobox({ coins, value, onChange, error, disabled }: CoinCo
         {open && (
           <div
             role="listbox"
-            aria-labelledby="coin-combobox-label"
             className="absolute inset-x-0 top-full z-20 mt-1 max-h-72 overflow-hidden rounded-md border border-border-subtle bg-bg-elevated shadow-popover"
           >
             <div className="flex items-center gap-2 border-b border-border-subtle px-3 py-2">
               <Search className="h-4 w-4 shrink-0 text-text-muted" aria-hidden="true" />
               <input
-                autoFocus
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
