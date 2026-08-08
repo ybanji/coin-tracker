@@ -18,13 +18,13 @@ interface RecentSearchState {
 
 export const useRecentSearchesStore = create<RecentSearchState>()(
   persist(
-    (set) => ({
+    (_set) => ({
       entries: [],
       addEntry: (entry) =>
-        set((_state) => ({
+        _set((_state) => ({
           entries: [entry, ..._state.entries.filter((e) => e.id !== entry.id)].slice(0, MAX_RECENT),
         })),
-      clear: () => set({ entries: [] }),
+      clear: () => _set({ entries: [] }),
     }),
     { name: "coin-tracker-recent-searches" },
   ),

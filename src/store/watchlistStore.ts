@@ -11,10 +11,10 @@ interface WatchlistState {
 
 export const useWatchlistStore = create<WatchlistState>()(
   persist(
-    (set, get) => ({
+    (_set, get) => ({
       coinIds: [],
-      add: (id) => set((_state) => (_state.coinIds.includes(id) ? _state : { coinIds: [..._state.coinIds, id] })),
-      remove: (id) => set((_state) => ({ coinIds: _state.coinIds.filter((c) => c !== id) })),
+      add: (id) => _set((_state) => (_state.coinIds.includes(id) ? _state : { coinIds: [..._state.coinIds, id] })),
+      remove: (id) => _set((_state) => ({ coinIds: _state.coinIds.filter((c) => c !== id) })),
       toggle: (id) => (get().has(id) ? get().remove(id) : get().add(id)),
       has: (id) => get().coinIds.includes(id),
     }),

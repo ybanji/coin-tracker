@@ -19,21 +19,21 @@ interface PortfolioState {
  */
 export const usePortfolioStore = create<PortfolioState>()(
   persist(
-    (set) => ({
+    (_set) => ({
       holdings: [],
       addHolding: (input) =>
-        set((_state) => ({
+        _set((_state) => ({
           holdings: [
             ..._state.holdings,
             { ...input, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
           ],
         })),
       updateHolding: (id, input) =>
-        set((_state) => ({
+        _set((_state) => ({
           holdings: _state.holdings.map((h) => (h.id === id ? { ...h, ...input } : h)),
         })),
-      removeHolding: (id) => set((_state) => ({ holdings: _state.holdings.filter((h) => h.id !== id) })),
-      clear: () => set({ holdings: [] }),
+      removeHolding: (id) => _set((_state) => ({ holdings: _state.holdings.filter((h) => h.id !== id) })),
+      clear: () => _set({ holdings: [] }),
     }),
     { name: "coin-tracker-portfolio" },
   ),
