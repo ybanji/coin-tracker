@@ -25,7 +25,8 @@ interface PreferencesState {
 
 const DEFAULTS = {
   currency: "usd" as SupportedCurrency,
-  refreshInterval: 45_000 as RefreshInterval,
+  // Use a value that conforms to the RefreshInterval union (60_000 = 1 minute)
+  refreshInterval: 60_000 as RefreshInterval,
   compactMode: false,
 };
 
