@@ -83,14 +83,16 @@ export function SettingsPage() {
           </div>
 
           <div className="flex items-center justify-between gap-4 sm:max-w-md">
-            <div>
-              <span className="block text-caption font-medium text-text-secondary">Compact Mode</span>
-              <span className="block text-caption text-text-muted">Tighter spacing to fit more on screen.</span>
+            <div id="compact-mode-label">
+              <span id="compact-mode-title" className="block text-caption font-medium text-text-secondary">Compact Mode</span>
+              <span id="compact-mode-desc" className="block text-caption text-text-muted">Tighter spacing to fit more on screen.</span>
             </div>
             <button
               type="button"
               role="switch"
               aria-checked={compactMode}
+              aria-labelledby="compact-mode-title"
+              aria-describedby="compact-mode-desc"
               aria-label="Toggle compact mode"
               onClick={() => setCompactMode(!compactMode)}
               className={cn(
