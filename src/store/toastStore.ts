@@ -22,14 +22,14 @@ const DEFAULT_DURATION_MS = 4000;
  * / `toast.error(...)` (see the `toast` helper below) instead of touching
  * this store directly, keeping call sites terse.
  */
-export const useToastStore = create<ToastState>((set) => ({
+export const useToastStore = create<ToastState>((_set) => ({
   toasts: [],
   show: (toast) => {
     const id = crypto.randomUUID();
-    set((state) => ({ toasts: [...state.toasts, { ...toast, id }] }));
+    _set((_state) => ({ toasts: [..._state.toasts, { ...toast, id }] }));
     return id;
   },
-  dismiss: (id) => set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })),
+  dismiss: (id) => _set((_state) => ({ toasts: _state.toasts.filter((t) => t.id !== id) })),
 }));
 
 function push(variant: ToastVariant, title: string, description?: string) {
