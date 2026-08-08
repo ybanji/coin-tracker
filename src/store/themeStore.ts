@@ -32,8 +32,8 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: "coin-tracker-theme",
-      onRehydrateStorage: () => (state) => {
-        if (state) applyThemeToDocument(state.mode);
+      onRehydrateStorage: () => (_state) => {
+        if (_state) applyThemeToDocument(_state.mode);
       },
     },
   ),
